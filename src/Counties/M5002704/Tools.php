@@ -27,7 +27,7 @@ class Tools extends ToolsDsfnet
      */
     protected $url = [
         1 => 'http://issdigital.pmcg.ms.gov.br/WsNFe2/LoteRps.jws',
-        2 => 'http://200.201.194.78/WsNFe2/LoteRps.jws'
+        2 => 'http://issdigital.pmcg.ms.gov.br/WsNFe2/LoteRps.jws'
     ];
     /**
      * County Namespace
