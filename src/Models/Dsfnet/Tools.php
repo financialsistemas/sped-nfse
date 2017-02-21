@@ -156,7 +156,7 @@ class Tools extends ToolsBase
             $this->versao,
             $this->remetenteCNPJCPF,
             $this->remetenteRazao,
-            null,
+            'true',
             $this->codcidade,
             $rpss,
             $numeroLote
