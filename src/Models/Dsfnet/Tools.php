@@ -70,12 +70,14 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $xml);
     }
-    
+
     /**
      * Consulta Lote de NFSe e/ou RPS
      * @param type $prestadorIM
-     * @param type $nfse [0 => ['numero', 'codigoVerificacao']]
-     * @param type $rps  [0 => ['numero', 'serie']]
+     * @param $lote
+     * @param array|type $nfse [0 => ['numero', 'codigoVerificacao']]
+     * @param array|type $rps [0 => ['numero', 'serie']]
+     * @return string
      */
     public function consultarNFSeRps($prestadorIM, $lote, $nfse = [], $rps = [])
     {
@@ -218,12 +220,25 @@ class Tools extends ToolsBase
      */
     protected function sendRequest($url, $message)
     {
-        return $message;
-        /*
-        $url = $this->url[$this->config->tpAmb];
+//        return $message;
+
+        $url     = $this->url[$this->config->tpAmb];
+        $request = '';
+        $params  = [];
+
         if (!is_object($this->soap)) {
-            $this->soap = new \NFePHP\NFSe\Common\SoapCurl($this->certificate);
+            $this->soap = new \NFePHP\Common\Soap\SoapCurl($this->certificate);
         }
+
+        //formata o xml da mensagem para o padão esperado pelo webservice
+        $dom = new \DOMDocument('1.0', 'UTF-8');
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        $dom->loadXML($message);
+        $message = str_replace('<?xml version="1.0"?>', '<?xml version="1.0" encoding="UTF-8"?>', $dom->saveXML());
+
+        $messageText = $message;
+
         //para usar o cURL quando está estabelecido o uso do CData na estrutura
         //do xml, terá de haver uma transformação, porém no caso do SoapNative isso
         //não é necessário, pois o próprio SoapClient faz essas transformações,
@@ -240,18 +255,18 @@ class Tools extends ToolsBase
                 'mensagemXml' => $message
             ];
         }
-        $action = "\"$this->xmlns/LoteRps/". $this->method ."Request\"";
+
+        $action = "\"$this->xmlns/LoteRps/" . $this->method . "Request\"";
         return $this->soap->send(
             $url,
             $this->method,
             $action,
             $this->soapversion,
             $params,
-            $this->namespaces[$this->soapversion]
+            $this->namespaces[$this->soapversion],
+            $request
         );
 
-        */
-        
         /*
         $request = "<dsf:$this->method>";
         $request .= "<mensagemXML>$body</mensagemXML>";
@@ -269,13 +284,13 @@ class Tools extends ToolsBase
                 . $request
                 . "</soapenv:Body>"
                 . "</soapenv:Envelope>";
-        
+
         $messageSize = strlen($envelope);
         $parametros = array(
             'Content-Type: application/soap+xml;charset=utf-8',
             'SOAPAction: "'.$this->method.'"',
             "Content-length: $messageSize");
-        
+
         return $envelope;
          */
     }

@@ -26,7 +26,7 @@ class Response
     {
         libxml_use_internal_errors(true);
         $dom = new DOMDocument('1.0', 'utf-8');
-        $dom->loadXML($response);
+        $a = $dom->loadXML($response);
         $errors = libxml_get_errors();
         libxml_clear_errors();
         if (! empty($errors)) {

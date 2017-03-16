@@ -183,10 +183,11 @@ abstract class Tools
     {
         $this->logger = $logger;
     }
-    
+
     /**
      * Send request to webservice
-     * @param string $message
+     * @param $url
+     * @param $message
      * @return string
      */
     abstract protected function sendRequest($url, $message);
