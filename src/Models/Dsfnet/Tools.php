@@ -51,7 +51,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $xml);
     }
-    
+
     /**
      * Consulta Lote
      * @param string $numeroLote
@@ -96,7 +96,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $xml);
     }
-    
+
     /**
      * Consulta nota
      * @param string $prestadorIM
@@ -121,7 +121,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $xml);
     }
-    
+
     /**
      * Consulta numero sequencial
      * @param string $prestadorIM
@@ -142,7 +142,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $xml);
     }
-    
+
     /**
      *
      * @param array $rpss
@@ -165,7 +165,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $xml);
     }
-    
+
     /**
      *
      * @param array $rpss
@@ -188,7 +188,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $xml);
     }
-    
+
     /**
      *
      * @param array $rpss
@@ -211,7 +211,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $xml);
     }
-    
+
     /**
      * Monta o request da mensagem SOAP
      * @param string $url
@@ -229,13 +229,6 @@ class Tools extends ToolsBase
         if (!is_object($this->soap)) {
             $this->soap = new \NFePHP\Common\Soap\SoapCurl($this->certificate);
         }
-
-        //formata o xml da mensagem para o padão esperado pelo webservice
-        $dom = new \DOMDocument('1.0', 'UTF-8');
-        $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = true;
-        $dom->loadXML($message);
-        $message = str_replace('<?xml version="1.0"?>', '<?xml version="1.0" encoding="UTF-8"?>', $dom->saveXML());
 
         $messageText = $message;
 

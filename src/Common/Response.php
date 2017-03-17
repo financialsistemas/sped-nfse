@@ -26,13 +26,13 @@ class Response
     {
         libxml_use_internal_errors(true);
         $dom = new DOMDocument('1.0', 'utf-8');
-        $a = $dom->loadXML($response);
+        $dom->loadXML($response);
         $errors = libxml_get_errors();
         libxml_clear_errors();
         if (! empty($errors)) {
             $msg = '';
             foreach ($errors as $error) {
-                $msg .= $error->message();
+                $msg .= $error->message;
             }
             throw new \RuntimeException($msg);
         }
@@ -43,7 +43,7 @@ class Response
         //converte o xml em uma stdClass
         return $this->xml2Obj($dom, $tag);
     }
-    
+
     /**
      * Convert DOMDocument in stdClass
      * @param \DOMDocument $dom
@@ -62,7 +62,7 @@ class Response
         $xml = str_replace('&lt;?xml version="1.0" encoding="UTF-8"?&gt;', '', $xml);
         $xml = str_replace('&lt;?xml version="1.0" encoding="utf-8"?&gt;', '', $xml);
         $xml = EntitiesCharacters::convert(html_entity_decode($xml));
-        
+
         $resp = simplexml_load_string($xml, null, LIBXML_NOCDATA);
         $std = json_encode($resp);
         $std = str_replace('@attributes', 'attributes', $std);
