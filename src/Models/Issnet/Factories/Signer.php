@@ -16,9 +16,9 @@ namespace NFePHP\NFSe\Models\Issnet\Factories;
  * @link      http://github.com/nfephp-org/sped-common for the canonical source repository
  */
 
-use NFePHP\Common\Certificate;
-use NFePHP\Common\Certificate\PublicKey;
-use NFePHP\Common\Exception\SignnerException;
+use NFePHPv5\Common\Certificate;
+use NFePHPv5\Common\Certificate\PublicKey;
+use NFePHPv5\Common\Exception\SignnerException;
 use DOMDocument;
 use DOMElement;
 
@@ -33,7 +33,7 @@ class Signer
      * @param array $canonical parameters to format node for signature
      * @param string $rootname name of tag to insert signature block
      * @return string
-     * @throws \NFePHP\Common\Exception\SignnerException
+     * @throws \NFePHPv5\Common\Exception\SignnerException
      */
     public static function sign(
         Certificate $certificate,
@@ -94,7 +94,7 @@ class Signer
         }
         return true;
     }
-    
+
     /**
      * Method that provides the signature of xml as standard SEFAZ
      * @param Certificate $certificate
@@ -127,9 +127,9 @@ class Signer
         }
         $nsTransformMethod1 ='http://www.w3.org/2000/09/xmldsig#enveloped-signature';
         $nsTransformMethod2 = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315';
-        
+
         $idSigned = $mark;
-        
+
         $digestValue = self::makeDigest($root, $digestAlgorithm, $canonical);
         $signatureNode = $dom->createElementNS($nsDSIG, 'Signature');
         $root->appendChild($signatureNode);
@@ -143,7 +143,7 @@ class Signer
         $signatureMethodNode->setAttribute('Algorithm', $nsSignatureMethod);
         $referenceNode = $dom->createElement('Reference');
         $signedInfoNode->appendChild($referenceNode);
-        
+
         $referenceNode->setAttribute('URI', "$idSigned");
         $transformsNode = $dom->createElement('Transforms');
         $referenceNode->appendChild($transformsNode);
@@ -191,7 +191,7 @@ class Signer
         }
         return true;
     }
-    
+
     /**
      * Verify signature value
      * @param \DOMDocument $dom
@@ -213,14 +213,14 @@ class Signer
         $decodedSignature = base64_decode(str_replace(array("\r", "\n"), '', $signatureValue));
         return $publicKey->verify($signContent, $decodedSignature, $algorithm);
     }
-    
+
     /**
      * digestCheck
      * Verify digest value
      * @param string $content
      * @param string $tagid
      * @return boolean
-     * @throws \NFePHP\Common\Exception\SignerException
+     * @throws \NFePHPv5\Common\Exception\SignerException
      */
     private static function digestCheck(DOMDocument $dom, $tagname = '')
     {
@@ -251,7 +251,7 @@ class Signer
         }
         return true;
     }
-    
+
     /**
      * Calculate digest value for given node
      * @param \DOMElement $node

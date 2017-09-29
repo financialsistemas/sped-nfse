@@ -4,7 +4,7 @@ namespace NFePHP\NFSe\Tests;
 
 use NFePHP\NFSe\NFSe;
 use NFePHP\NFSe\NFSeStatic;
-use NFePHP\Common\Certificate;
+use NFePHPv5\Common\Certificate;
 
 class NFSeTest extends NFSeTestCase
 {

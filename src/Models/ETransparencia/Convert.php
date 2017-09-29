@@ -16,10 +16,10 @@ namespace NFePHP\NFSe\Models\ETransparencia;
  */
 
 use InvalidArgumentException;
-use NFePHP\Common\Strings;
+use NFePHPv5\Common\Strings;
 use NFePHP\NFSe\Models\ETransparencia\Rps;
 
 class Convert
 {
-    
+
 }

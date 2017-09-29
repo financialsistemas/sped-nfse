@@ -19,7 +19,7 @@ namespace NFePHP\NFSe\Models\Prodam;
 use NFePHP\NFSe\Models\Prodam\Rps;
 use NFePHP\NFSe\Models\Prodam\Factories;
 use NFePHP\NFSe\Common\Tools as ToolsBase;
-use NFePHP\Common\Soap\SoapCurl;
+use NFePHPv5\Common\Soap\SoapCurl;
 
 class Tools extends ToolsBase
 {
@@ -42,7 +42,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $message);
     }
-    
+
     /**
      * Envio de lote de RPS
      * @param array $rpss
@@ -61,7 +61,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $message);
     }
-    
+
     /**
      * Pedido de teste de envio de lote
      * @param array $rpss
@@ -80,7 +80,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $message);
     }
-    
+
     /**
      * Consulta as NFSe e/ou RPS
      * @param array $chavesNFSe array(array('prestadorIM'=>'', 'numeroNFSe'=>''))
@@ -101,7 +101,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $message);
     }
-    
+
     /**
      * Consulta as NFSe Recebidas pelo Tomador no periodo
      * @param string $cnpjTomador
@@ -136,7 +136,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $message);
     }
-    
+
     /**
      * Consulta das NFSe emitidas pelo prestador no período
      * @param string $cnpjPrestador
@@ -171,7 +171,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $message);
     }
-    
+
     /**
      * Consulta Lote
      * @param string $numeroLote
@@ -190,7 +190,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $message);
     }
-    
+
     /**
      * Pedido de informações de Lote
      * @param string $prestadorIM
@@ -211,7 +211,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $message);
     }
-    
+
     /**
      * Solicita cancelamento da NFSe
      * @param string $prestadorIM
@@ -232,7 +232,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $message);
     }
-    
+
     /**
      * Consulta CNPJ de contribuinte do ISS
      * @param string $cnpjContribuinte
@@ -252,7 +252,7 @@ class Tools extends ToolsBase
         );
         return $this->sendRequest('', $message);
     }
-    
+
     /**
      * Send request to webservice
      * @param string $message

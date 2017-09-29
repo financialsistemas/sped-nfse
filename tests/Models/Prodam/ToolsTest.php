@@ -4,24 +4,24 @@ namespace NFePHP\NFSe\Tests\Models\Prodam;
 
 use NFePHP\NFSe\Tests\NFSeTestCase;
 use NFePHP\NFSe\NFSe;
-use NFePHP\Common\Certificate;
+use NFePHPv5\Common\Certificate;
 
 class ToolsTest extends NFSeTestCase
 {
     public $nfse;
     public $dummySoap;
-    
+
     public function __construct()
     {
         parent::__construct();
         $certificate = Certificate::readPfx($this->contentpfx, $this->passwordpfx);
         $this->nfse = new NFSe($this->configJson, $certificate);
-        $this->dummySoap = $this->getMockBuilder('\NFePHP\Common\Soap\SoapCurl')
-            ->setMethods(['send'])    
+        $this->dummySoap = $this->getMockBuilder('\NFePHPv5\Common\Soap\SoapCurl')
+            ->setMethods(['send'])
             ->getMock();
         $this->dummySoap->disableCertValidation(true);
     }
-    
+
     public function testEnvioRPS()
     {
         $expected = '';
@@ -31,7 +31,7 @@ class ToolsTest extends NFSeTestCase
         //$actual = $this->nfse->tools->envioRPS($rps);
         $this->assertTrue(true);
     }
-    
+
     public function testEnvioLoteRPS()
     {
         $expected = '';
@@ -42,7 +42,7 @@ class ToolsTest extends NFSeTestCase
         //$actual = $this->nfse->tools->envioLoteRPS($rpss);
         $this->assertTrue(true);
     }
-    
+
     public function testTesteEnvioLoteRPS()
     {
         $expected = '';
@@ -53,7 +53,7 @@ class ToolsTest extends NFSeTestCase
         //$actual = $this->nfse->tools->testeEnvioLoteRPS($rpss);
         $this->assertTrue(true);
     }
-    
+
     public function testCancelamentoNFSe()
     {
         $expected = file_get_contents($this->fixturesPath."Prodam/response_retornoCancelamentoNFe.xml");
@@ -64,7 +64,7 @@ class ToolsTest extends NFSeTestCase
         $actual = $this->nfse->tools->cancelamentoNFSe($prestadorIM, $numeroNFSe);
         $this->assertEquals($expected, $actual);
     }
-    
+
     public function testConsultaNFSeEmitidas()
     {
         $expected = file_get_contents($this->fixturesPath."Prodam/response_consultaNFSeEmitidas.xml");
@@ -79,7 +79,7 @@ class ToolsTest extends NFSeTestCase
         $actual = $this->nfse->tools->consultaNFSeEmitidas($cnpj, $cpf, $im, $dtInicial, $dtFinal, $pagina);
         $this->assertEquals($expected, $actual);
     }
-    
+
     public function testConsultaNFSeRecebidas()
     {
         $expected = file_get_contents($this->fixturesPath."Prodam/response_consultaNFSeRecebidas.xml");
@@ -94,7 +94,7 @@ class ToolsTest extends NFSeTestCase
         $actual = $this->nfse->tools->consultaNFSeEmitidas($cnpj, $cpf, $im, $dtInicial, $dtFinal, $pagina);
         $this->assertEquals($expected, $actual);
     }
-    
+
     public function testConsultaInformacoesLote()
     {
         $expected = file_get_contents($this->fixturesPath."Prodam/response_consultaInformacoesLoteErro.xml");
@@ -105,7 +105,7 @@ class ToolsTest extends NFSeTestCase
         $actual = $this->nfse->tools->consultaInformacoesLote($im, $lote);
         $this->assertEquals($expected, $actual);
     }
-    
+
     public function testConsultaLote()
     {
         $expected = file_get_contents($this->fixturesPath."Prodam/response_consultaLoteErro.xml");
@@ -115,7 +115,7 @@ class ToolsTest extends NFSeTestCase
         $actual = $this->nfse->tools->consultaLote($lote);
         $this->assertEquals($expected, $actual);
     }
-    
+
     public function testConsultaNFSe()
     {
         $expected = file_get_contents($this->fixturesPath."Prodam/response_consultaNFSe.xml");
@@ -128,7 +128,7 @@ class ToolsTest extends NFSeTestCase
         );
         $this->assertEquals($expected, $actual);
     }
-    
+
     public function testConsultaCNPJ()
     {
         $expected = file_get_contents($this->fixturesPath."Prodam/response_consultaCnpj.xml");

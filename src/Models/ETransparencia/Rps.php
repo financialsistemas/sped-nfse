@@ -19,10 +19,10 @@ namespace NFePHP\NFSe\Models\ETransparencia;
 use DateTime;
 use InvalidArgumentException;
 use Respect\Validation\Validator;
-use NFePHP\Common\Strings;
+use NFePHPv5\Common\Strings;
 use NFePHP\NFSe\Common\Rps as RpsBase;
 
 class Rps extends RpsBase
 {
-    
+
 }

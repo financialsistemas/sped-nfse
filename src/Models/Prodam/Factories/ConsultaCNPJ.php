@@ -19,7 +19,7 @@ namespace NFePHP\NFSe\Models\Prodam\Factories;
 
 use NFePHP\NFSe\Models\Prodam\Factories\Header;
 use NFePHP\NFSe\Models\Prodam\Factories\Factory;
-use NFePHP\Common\Signer;
+use NFePHPv5\Common\Signer;
 
 class ConsultaCNPJ extends Factory
 {

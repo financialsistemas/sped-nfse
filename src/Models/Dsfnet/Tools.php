@@ -227,7 +227,7 @@ class Tools extends ToolsBase
         $params  = [];
 
         if (!is_object($this->soap)) {
-            $this->soap = new \NFePHP\Common\Soap\SoapCurl($this->certificate);
+            $this->soap = new \NFePHPv5\Common\Soap\SoapCurl($this->certificate);
         }
 
         $messageText = $message;
@@ -236,7 +236,7 @@ class Tools extends ToolsBase
         //do xml, terá de haver uma transformação, porém no caso do SoapNative isso
         //não é necessário, pois o próprio SoapClient faz essas transformações,
         //baseado no WSDL.
-        if (is_a($this->soap, 'NFePHP\Common\Soap\SoapCurl') && $this->withcdata) {
+        if (is_a($this->soap, 'NFePHPv5\Common\Soap\SoapCurl') && $this->withcdata) {
             $messageText = $this->stringTransform($message);
             $request = "<$this->method soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">"
                 . "<mensagemXml xsi:type=\"xsd:string\">"

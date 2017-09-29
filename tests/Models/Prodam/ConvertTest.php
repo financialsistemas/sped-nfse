@@ -3,14 +3,14 @@
 namespace NFePHP\NFSe\Tests\Models\Prodam;
 
 use NFePHP\NFSe\Tests\NFSeTestCase;
-use NFePHP\Common\Certificate;
+use NFePHPv5\Common\Certificate;
 use NFePHP\NFSe\Models\Prodam\Convert;
 use NFePHP\NFSe\NFSe;
 
 class ConvertTest extends NFSeTestCase
 {
     public $convert;
-    
+
     public function __construct()
     {
         parent::__construct();
@@ -20,7 +20,7 @@ class ConvertTest extends NFSeTestCase
         );
         $this->convert = $nfse->convert;
     }
-    
+
     /**
      * @covers NFePHP\NFSe\Models\Prodam\Convert::toRps
      * @covers NFePHP\NFSe\Models\Prodam\Convert::validTipos
@@ -37,7 +37,7 @@ class ConvertTest extends NFSeTestCase
         $rpss = $this->convert->toRps($this->fixturesPath . '/Prodam/LoteRPS2.txt');
         $this->assertInstanceOf('\NFePHP\NFSe\Models\Prodam\Rps', $rpss[0]);
     }
-    
+
     /**
      * @covers NFePHP\NFSe\Models\Prodam\Convert::toRps
      * @covers NFePHP\NFSe\Models\Prodam\Convert::validTipos

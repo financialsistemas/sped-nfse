@@ -17,7 +17,7 @@ namespace NFePHP\NFSe\Models\Prodam;
  */
 
 use InvalidArgumentException;
-use NFePHP\Common\Strings;
+use NFePHPv5\Common\Strings;
 use NFePHP\NFSe\Models\Prodam\Rps;
 
 class Convert
@@ -33,7 +33,7 @@ class Convert
     protected static $f5 = [];
     protected static $f6 = [];
     protected static $f9 = [];
-    
+
     protected static $bF = [
         ['tipo',1,'N',0],//1
         ['tpRPS',5,'C',''],//2
@@ -49,7 +49,7 @@ class Convert
         ['indTomador',1,'N',0],//12
         ['cnpjcpfTomador',14,'N',0]
     ];
-    
+
     protected static $f1Fields = [
         ['tipo',1,'N', 0],
         ['versao',3,'N', 0],
@@ -57,7 +57,7 @@ class Convert
         ['dtIni',8,'D','Y-m-d'],
         ['dtFim',8,'D','Y-m-d']
     ];
-    
+
     protected static $f2FieldsPart = [
         ['imTomador',8,'N',0],//14
         ['ieTomador',12,'N',0],//15
@@ -73,7 +73,7 @@ class Convert
         ['emailTomador',75,'C',''],//25
         ['discriminacao',1000,'C','']//26
     ];
-    
+
     protected static $f3FieldsPart = ['discriminacao',1000,'C',''];
 
     protected static $f5Fields = [
@@ -111,7 +111,7 @@ class Convert
         ['reservado',200,'C',''],//37
         ['discriminacao',1000,'C','']//38
     ];
-    
+
     protected static $f9Fields = [
         ['tipo',1,'N',0],
         ['num',7,'N',0],
@@ -162,7 +162,7 @@ class Convert
         self::loadRPS();
         return self::$aRps;
     }
-    
+
     /**
      * valida os dados do TXT com base na quantidade de cada tipo de informação
      * @throws InvalidArgumentException
@@ -188,7 +188,7 @@ class Convert
             throw new InvalidArgumentException($msg);
         }
     }
-    
+
     /**
      * Carrega os RPS contidos no txt
      */
@@ -238,7 +238,7 @@ class Convert
             $x++;
         }
     }
-    
+
     /**
      * Carrega a parte do RPS relativa apenas a
      * registro tipo 2 (versão 001 do layout)
@@ -266,7 +266,7 @@ class Convert
             $fData['cepTomador']
         );
     }
-    
+
     /**
      * Carrega a parte do RPS relativa apenas a
      * registro tipo 3 - CUPONS (versão 001 e 002 do layout)
@@ -284,7 +284,7 @@ class Convert
             ''
         );
     }
-    
+
     /**
      * Carrega a parte do RPS relativa apenas a
      * registro tipo 6 (versão 002 do layout)
@@ -319,7 +319,7 @@ class Convert
     {
         self::$f1 = self::extract($dado, self::$f1Fields);
     }
-    
+
     /**
      * REGISTRO TIPO 2 – DETALHE
      * Versão 001
@@ -331,7 +331,7 @@ class Convert
         self::$f2[] = self::extract($dado, $aFields);
         self::$item = count(self::$f2)-1;
     }
-    
+
     /**
      * REGISTRO TIPO 3 - DETALHE (EXCLUSIVO PARA CUPONS)
      * Versão 001 e 002
@@ -343,7 +343,7 @@ class Convert
         self::$f3[] = self::extract($dado, $aFields);
         self::$item = count(self::$f3)-1;
     }
-    
+
     /**
      * REGISTRO TIPO 5 – DETALHE DO INTERMEDIÁRIO DO SERVIÇO
      * Este registro está vinculado ao registro anterior que pode
@@ -355,7 +355,7 @@ class Convert
     {
         self::$f5[self::$item] = self::extract($dado, self::$f5Fields);
     }
-    
+
     /**
      * REGISTRO TIPO 6 – DETALHE
      * Versão 002
@@ -367,7 +367,7 @@ class Convert
         self::$f6[] = self::extract($dado, $aFields);
         self::$item = count(self::$f6)-1;
     }
-    
+
     /**
      * REGISTRO TIPO 9 – RODAPÉ
      * Versão 001 e 002
@@ -377,7 +377,7 @@ class Convert
     {
         self::$f9 = self::extract($dado, self::$f9Fields);
     }
-    
+
     /**
      * zArray2xml
      * Converte um lote de RPS em um array de txt em um ou mais RPS
@@ -397,7 +397,7 @@ class Convert
             self::$metodo($dado);
         }
     }
-    
+
     /**
      * Extrai os dados da string em campos de array
      * @param string $dado

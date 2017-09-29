@@ -16,9 +16,9 @@ namespace NFePHP\NFSe\Common;
  * @link      http://github.com/nfephp-org/sped-nfse for the canonical source repository
  */
 
-use NFePHP\Common\Certificate;
-use NFePHP\Common\Signer;
-use NFePHP\Common\Validator;
+use NFePHPv5\Common\Certificate;
+use NFePHPv5\Common\Signer;
+use NFePHPv5\Common\Validator;
 
 class Factory
 {
@@ -42,11 +42,11 @@ class Factory
      * @var \DateTimeZone
      */
     public $timezone;
-    
+
     /**
      * Construtor recebe a classe de certificados
      *
-     * @param \NFePHP\Common\Certificate $certificate
+     * @param \NFePHPv5\Common\Certificate $certificate
      * @param int $algorithm
      */
     public function __construct(Certificate $certificate, $algorithm = OPENSSL_ALGO_SHA1)
@@ -55,7 +55,7 @@ class Factory
         $this->algorithm = $algorithm;
         $this->pathSchemes = __DIR__.'/../../schemes';
     }
-    
+
     /**
      * Set time Zone as class DateTimeZone based in UF alias
      * @param \DateTimeZone $timezone
@@ -64,7 +64,7 @@ class Factory
     {
         $this->timezone = $timezone;
     }
-    
+
     /**
      * Set OPENSSL Algorithm using OPENSSL constants
      * @param int $algorithm
@@ -73,7 +73,7 @@ class Factory
     {
         $this->algorithm = $algorithm;
     }
-    
+
     /**
      * Remove os marcadores de XML
      * @param string $body
@@ -86,7 +86,7 @@ class Factory
         $body = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $body);
         return $body;
     }
-    
+
     /**
      * Executa a validação da mensagem XML com base no XSD
      * @param string $versao versão dos schemas
@@ -113,7 +113,7 @@ class Factory
             $schema
         );
     }
-    
+
     /**
      * Bild signature tag
      * @param string $content

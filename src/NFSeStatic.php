@@ -17,7 +17,7 @@ namespace NFePHP\NFSe;
  */
 
 use NFePHP\NFSe\Counties;
-use NFePHP\Common\Certificate;
+use NFePHPv5\Common\Certificate;
 use stdClass;
 use RuntimeException;
 
@@ -32,7 +32,7 @@ class NFSeStatic
     {
         return self::classCheck(self::getClassName($config, 'Convert'), $config);
     }
-    
+
     /**
      * Instancia a classe usada na construção do RPS
      * para um municipio em particular
@@ -50,14 +50,14 @@ class NFSeStatic
      * para um municipio em particular
      *
      * @param stdClass $config
-     * @param NFePHP\Common\Certificate $certificate
+     * @param NFePHPv5\Common\Certificate $certificate
      * @return \NFePHP\NFSe\Counties\class
      */
     public static function tools(stdClass $config, Certificate $certificate)
     {
         return self::classCheck(self::getClassName($config, 'Tools'), $config, $certificate);
     }
-    
+
     /**
      * Instancia a classe que converte o xml de resposta em
      * uma stdClass
@@ -67,7 +67,7 @@ class NFSeStatic
     {
         return self::classCheck(self::getClassName($config, 'Response'), $config);
     }
-    
+
     /**
      * Monta o nome das classes referentes a determinado municipio
      *
@@ -79,13 +79,13 @@ class NFSeStatic
     {
         return "\NFePHP\NFSe\Counties\\M$config->cmun\\$complement";
     }
-    
+
     /**
      * Instancia e retorna a classe desejada
      *
      * @param string $className
      * @param stdClass $config
-     * @param NFePHP\Common\Certificate|null $certificate
+     * @param NFePHPv5\Common\Certificate|null $certificate
      * @return \NFePHP\NFSe\className
      * @throws RuntimeException
      */

@@ -16,9 +16,9 @@ namespace NFePHP\NFSe\Models\Issnet;
  * @link      http://github.com/nfephp-org/sped-nfse for the canonical source repository
  */
 
-use NFePHP\Common\DOMImproved as Dom;
+use NFePHPv5\Common\DOMImproved as Dom;
 use NFePHP\NFSe\Models\Issnet\Rps;
-use NFePHP\Common\Certificate;
+use NFePHPv5\Common\Certificate;
 
 class RenderRPS
 {
@@ -54,7 +54,7 @@ class RenderRPS
         }
         return $xml;
     }
-    
+
     /**
      * Monta o xml com base no objeto Rps
      * @param Rps $rps
@@ -65,7 +65,7 @@ class RenderRPS
         self::$dom = new Dom('1.0', 'utf-8');
         $root = self::$dom->createElement('tc:Rps');
         $infRPS = self::$dom->createElement('tc:InfRps');
-        
+
         $identificacaoRps = self::$dom->createElement('tc:IdentificacaoRps');
         self::$dom->addChild(
             $identificacaoRps,
@@ -133,7 +133,7 @@ class RenderRPS
             'Status',
             false
         );
-        
+
         if (!empty($rps->infRpsSubstituido['numero'])) {
             $rpssubs = self::$dom->createElement('tc:RpsSubstituido');
             self::$dom->addChild(
@@ -162,7 +162,7 @@ class RenderRPS
             );
             self::$dom->appChild($infRPS, $rpssubs, 'Adicionando tag RpsSubstituido em infRps');
         }
-        
+
         self::$dom->addChild(
             $infRPS,
             'tc:RegimeEspecialTributacao',
@@ -302,7 +302,7 @@ class RenderRPS
             false
         );
         self::$dom->appChild($servico, $valores, 'Adicionando tag Valores em Servico');
-        
+
         self::$dom->addChild(
             $servico,
             'tc:ItemListaServico',
@@ -376,7 +376,7 @@ class RenderRPS
             false
         );
         self::$dom->appChild($infRPS, $prestador, 'Adicionando tag Prestador em infRPS');
-        
+
         $tomador = self::$dom->createElement('tc:Tomador');
         $identificacaoTomador = self::$dom->createElement('tc:IdentificacaoTomador');
         $cpfCnpjTomador = self::$dom->createElement('tc:CpfCnpj');
@@ -467,7 +467,7 @@ class RenderRPS
             false
         );
         self::$dom->appChild($tomador, $endereco, 'Adicionando tag Endereco em Tomador');
-        
+
         if ($rps->infTomador['tel'] != '' || $rps->infTomador['email'] != '') {
             $contato = self::$dom->createElement('tc:Contato');
             self::$dom->addChild(
@@ -489,7 +489,7 @@ class RenderRPS
             self::$dom->appChild($tomador, $contato, 'Adicionando tag Contato em Tomador');
         }
         self::$dom->appChild($infRPS, $tomador, 'Adicionando tag Tomador em infRPS');
-        
+
         if (!empty($rps->infIntermediario['razao'])) {
             $intermediario = self::$dom->createElement('tc:IntermediarioServico');
             self::$dom->addChild(
@@ -551,7 +551,7 @@ class RenderRPS
             );
             self::$dom->appChild($infRPS, $construcao, 'Adicionando tag Construcao em infRPS');
         }
-        
+
         self::$dom->appChild($root, $infRPS, 'Adicionando tag infRPS em RPS');
         self::$dom->appendChild($root);
         $xml = str_replace('<?xml version="1.0" encoding="utf-8"?>', '', self::$dom->saveXML());

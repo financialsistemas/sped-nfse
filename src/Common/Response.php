@@ -16,7 +16,7 @@ namespace NFePHP\NFSe\Common;
  */
 
 use NFePHP\NFSe\Common\EntitiesCharacters;
-use NFePHP\Common\Exception\ExceptionCollection;
+use NFePHPv5\Common\Exception\ExceptionCollection;
 use DOMDocument;
 use stdClass;
 

@@ -16,11 +16,11 @@ namespace NFePHP\NFSe\Models\Abrasf;
  * @link      http://github.com/nfephp-org/sped-nfse for the canonical source repository
  */
 
-use NFePHP\Common\DOMImproved as Dom;
+use NFePHPv5\Common\DOMImproved as Dom;
 use NFePHP\NFSe\Models\Abrasf\Rps;
-use NFePHP\Common\Certificate;
+use NFePHPv5\Common\Certificate;
 
 class RenderRps
 {
-    
+
 }

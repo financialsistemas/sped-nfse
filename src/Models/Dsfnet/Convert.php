@@ -17,7 +17,7 @@ namespace NFePHP\NFSe\Models\Dsfnet;
  */
 
 use InvalidArgumentException;
-use NFePHP\Common\Strings;
+use NFePHPv5\Common\Strings;
 use NFePHP\NFSe\Models\Dsfnet\Rps;
 
 class Convert
@@ -80,7 +80,7 @@ class Convert
         ['MotCancelamento',80,'C',''],
         ['CpfCnpjIntermediario',14,'C','']
     ];
-    
+
     /**
      * Leiaute do registro tipo Item de RPS
      * Tipo "I"
@@ -96,7 +96,7 @@ class Convert
         ['PercentualDeduzir',15,'N',2],
         ['ValorDeduzir',15,'N',2]
     ];
-    
+
     /**
      * Leiaute do registro tipo Dedução de RPS
      * Tipo "D"
@@ -110,7 +110,7 @@ class Convert
         ['ValorTotal',15,'N',2],
         ['Tributavel',1,'C','']
     ];
-    
+
     /**
      * Formatos das Inscrições municipais
      * complementados com zeros a esquerda
@@ -126,7 +126,7 @@ class Convert
         ['2111300','São Luis – MA',11],
         ['3552205','Sorocaba -SP',9]
     ];
-    
+
     /**
      * Converte para Objetos RPS
      * @param string $txt lote de RPS em TXT formatado ou path para o arquivo

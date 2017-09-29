@@ -16,9 +16,9 @@ namespace NFePHP\NFSe\Models\Dsfnet;
  * @link      http://github.com/nfephp-org/sped-nfse for the canonical source repository
  */
 
-use NFePHP\Common\DOMImproved as Dom;
+use NFePHPv5\Common\DOMImproved as Dom;
 use NFePHP\NFSe\Models\Dsfnet\Rps;
-use NFePHP\Common\Certificate;
+use NFePHPv5\Common\Certificate;
 
 class RenderRPS
 {
@@ -40,7 +40,7 @@ class RenderRPS
         }
         return $xml;
     }
-    
+
     /**
      * Monta o xml com base no objeto Rps
      * @param Rps $rps
@@ -489,7 +489,7 @@ class RenderRPS
         $xml = str_replace('<?xml version="1.0" encoding="utf-8"?>', '', self::$dom->saveXML());
         return $xml;
     }
-    
+
     /**
      * Cria a assinatura do RPS
      * @param Rps $rps
@@ -513,7 +513,7 @@ class RenderRPS
         $signature = hash('sha1', $content);
         return $signature;
     }
-    
+
     private static function calcValor(Rps $rps)
     {
         $valorItens = 0;

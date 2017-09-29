@@ -17,10 +17,10 @@ namespace NFePHP\NFSe\Models\Ginfes;
  */
 
 use InvalidArgumentException;
-use NFePHP\Common\Strings;
+use NFePHPv5\Common\Strings;
 use NFePHP\NFSe\Models\Ginfes\Rps;
 
 class Convert
 {
-    
+
 }

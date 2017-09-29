@@ -16,10 +16,10 @@ namespace NFePHP\NFSe\Models\Abrasf;
  */
 
 use InvalidArgumentException;
-use NFePHP\Common\Strings;
+use NFePHPv5\Common\Strings;
 use NFePHP\NFSe\Models\Abrasf\Rps;
 
 class Convert
 {
-    
+
 }

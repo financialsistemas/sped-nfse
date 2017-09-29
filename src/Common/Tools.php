@@ -15,8 +15,8 @@ namespace NFePHP\NFSe\Common;
  * @link      http://github.com/nfephp-org/sped-nfse for the canonical source repository
  */
 
-use NFePHP\Common\Certificate;
-use NFePHP\Common\Soap\SoapInterface;
+use NFePHPv5\Common\Certificate;
+use NFePHPv5\Common\Soap\SoapInterface;
 use NFePHP\NFSe\Common\EntitiesCharacters;
 use NFePHP\NFSe\Common\DateTime;
 use Psr\Log\LoggerInterface;
@@ -32,12 +32,12 @@ abstract class Tools
     protected $config;
     /**
      * Certificate::class
-     * @var \NFePHP\Common\Certificate
+     * @var \NFePHPv5\Common\Certificate
      */
     protected $certificate;
     /**
      * Soap::class
-     * @var \NFePHP\Common\Soap\SoapInterface
+     * @var \NFePHPv5\Common\Soap\SoapInterface
      */
     protected $soap;
     /**
@@ -121,11 +121,11 @@ abstract class Tools
      * @var bool
      */
     protected $debugsoap = false;
-    
+
     /**
      * Constructor
      * @param stdClass $config
-     * @param \NFePHP\Common\Certificate $certificate
+     * @param \NFePHPv5\Common\Certificate $certificate
      */
     public function __construct(stdClass $config, Certificate $certificate)
     {
@@ -142,7 +142,7 @@ abstract class Tools
         $this->certificate = $certificate;
         $this->timezone = DateTime::tzdBR($config->siglaUF);
     }
-    
+
     /**
      * Set to true if CData is used in XML message
      * @param boolean $flag
@@ -151,7 +151,7 @@ abstract class Tools
     {
         $this->withcdata = $flag;
     }
-    
+
     /**
      * Set debug Soap Mode
      * @param bool $value
@@ -163,10 +163,10 @@ abstract class Tools
             $this->soap->setDebugMode($this->debugsoap);
         }
     }
-    
+
     /**
      * Load the chosen soap class
-     * @param \NFePHP\Common\Soap\SoapInterface $soap
+     * @param \NFePHPv5\Common\Soap\SoapInterface $soap
      */
     public function loadSoapClass(SoapInterface $soap)
     {
@@ -174,7 +174,7 @@ abstract class Tools
         $this->soap->loadCertificate($this->certificate);
         $this->soap->setDebugMode($this->debugsoap);
     }
-    
+
     /**
      * Load the cohsen logger class
      * @param \Psr\Log\LoggerInterface $logger
@@ -191,7 +191,7 @@ abstract class Tools
      * @return string
      */
     abstract protected function sendRequest($url, $message);
-    
+
     /**
      * Convert string xml message to cdata string
      * @param string $message
