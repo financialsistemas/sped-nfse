@@ -220,8 +220,6 @@ class Tools extends ToolsBase
      */
     protected function sendRequest($url, $message)
     {
-//        return $message;
-
         $url     = $this->url[$this->config->tpAmb];
         $request = '';
         $params  = [];
