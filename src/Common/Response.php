@@ -15,10 +15,7 @@ namespace NFePHP\NFSe\Common;
  * @link      http://github.com/nfephp-org/sped-nfse for the canonical source repository
  */
 
-use NFePHP\NFSe\Common\EntitiesCharacters;
-use NFePHP\Common\Exception\ExceptionCollection;
 use DOMDocument;
-use stdClass;
 
 class Response
 {
@@ -29,7 +26,7 @@ class Response
         $dom->loadXML($response);
         $errors = libxml_get_errors();
         libxml_clear_errors();
-        if (! empty($errors)) {
+        if (!empty($errors)) {
             $msg = '';
             foreach ($errors as $error) {
                 $msg .= $error->message;
@@ -42,6 +39,25 @@ class Response
         }
         //converte o xml em uma stdClass
         return $this->xml2Obj($dom, $tag);
+    }
+
+    /**
+     * Verifica se o retorno é relativo a um ERRO SOAP
+     * @param \DOMDocument $dom
+     * @return string
+     */
+    protected static function checkForFault(DOMDocument $dom)
+    {
+        $tagfault = $dom->getElementsByTagName('Fault')->item(0);
+        if (empty($tagfault)) {
+            return '';
+        }
+        $tagreason = $tagfault->getElementsByTagName('Reason')->item(0);
+        if (!empty($tagreason)) {
+            $reason = $tagreason->getElementsByTagName('Text')->item(0)->nodeValue;
+            return $reason;
+        }
+        return 'Houve uma falha na comunicação.';
     }
 
     /**
@@ -68,24 +84,5 @@ class Response
         $std = str_replace('@attributes', 'attributes', $std);
         $std = json_decode($std);
         return $std;
-    }
-
-    /**
-     * Verifica se o retorno é relativo a um ERRO SOAP
-     * @param \DOMDocument $dom
-     * @return string
-     */
-    protected static function checkForFault(DOMDocument $dom)
-    {
-        $tagfault = $dom->getElementsByTagName('Fault')->item(0);
-        if (empty($tagfault)) {
-            return '';
-        }
-        $tagreason = $tagfault->getElementsByTagName('Reason')->item(0);
-        if (! empty($tagreason)) {
-            $reason = $tagreason->getElementsByTagName('Text')->item(0)->nodeValue;
-            return $reason;
-        }
-        return 'Houve uma falha na comunicação.';
     }
 }
