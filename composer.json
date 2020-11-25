@@ -20,12 +20,12 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/robmachado/sped-common"
+            "url": "https://github.com/financialsistemas/sped-common.git"
         }
     ],
     "require": {
         "php" : "~5.6|~7.0",
-        "nfephp-org/sped-common" : "v5.0.x-dev",
+        "nfephp-org/sped-common" : "dev-master",
         "psr/log": "^1.0",
         "respect/validation": "^1.1"
     },
@@ -37,7 +37,7 @@
     "autoload": {
         "psr-4": {
           "NFePHP\\NFSe\\": "src/"
-        } 
+        }
     },
     "autoload-dev": {
         "psr-4": {
